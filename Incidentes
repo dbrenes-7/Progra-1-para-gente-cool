@@ -1,0 +1,58 @@
+void registroIncidentes(){
+int contador=0;
+printf("Indique la sala que desea registrar: ");
+gets(inci.sala);
+printf("Indique el código de reservación de la sala: ");
+gets(inci.codigo);
+printf("Describa el incidente: ");
+gets(inci.situacion);
+printf("Indique la fecha: ");
+gets(inci.fecha);
+FILE*ptr;
+ptr = fopen("INCIDENTES.txt","a+");
+if (ptr==NULL){
+    printf("Archivo no creado");
+    return;
+}
+while (contador==0){
+    fwrite(&inci,sizeof(inci),1,ptr);
+    printf("Incidente registrado, gracias por su colaboración");
+}
+contador++;
+fclose(ptr);
+}
+
+void consultaPorSala(){
+char sala[30];
+FILE *ptr;
+ptr = fopen("INCIDENTES.txt","a+");
+if (ptr==NULL){
+    printf("No hay incidentes registrados en ninguna sala");
+    return;
+}
+printf("Ingrese el codigo de la sala que desea ver: ");
+gets(sala);
+while(!feof(ptr)){
+    fread(&inci,sizeof(inci),1,ptr);
+    if(strstr(sala,inci.sala)){
+        printf("\nNumero de sala: %s \nCodigo de sala: %s \nIncidente: %s \nFecha del incidente: %s",inci.sala,inci.codigo,inci.situacion,inci.fecha);
+    }
+}
+fclose(ptr);
+}
+
+void consultaPorCalendario(){
+char inicio[30];
+char fin[30];
+FILE *ptr;
+ptr = fopen("INCIDENTES.txt","a+");
+if (ptr==NULL){
+    printf("No hay incidentes registrados en ninguna sala");
+    return;
+}
+printf("Indique la fecha de inicio: ");
+gets(inicio);
+printf("Indique la fecha de finalización: ");
+gets(fin);
+
+}
