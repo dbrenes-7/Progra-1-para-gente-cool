@@ -57,7 +57,7 @@ void agregarEstudiante()
     }else{
         int opcion;
             printf("Parece que este carnet ya esta registrado. ¿Desea intentarlo de nuevo?\n\n[1] Intentar de nuevo\n[2] Ir al menu principal\n\n");
-            scanf("%d", opcion);
+            scanf("%d", &opcion);
             if(opcion == 1){
                 return agregarEstudiante();
             }else
@@ -91,7 +91,7 @@ void insertarDato(Lista *L, int dato)
 	aux->siguiente->dato = dato;
 }
 
-void verificarCarnet(Lista*L, int elemento)
+int verificarCarnet(Lista*L, int elemento)
 {
     Nodo *current = L->inicio;
     int posicion = 0;
